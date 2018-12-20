@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+alpha:<span id="alpha"></span><br/>
+beta:<span id="beta"></span><br/>
+gamma:<span id="gamma"></span><br/>
+</body>
+<script>
+/*# UTO
+优荼webapp
+### 　这是我的第一个基于Vue实现的webapp,在未来的某些个阶段我会一直维护他,在此对于项目中所使用的开源项目作者致以最崇高的敬意,前端的发展离不开开源社区的贡献,我将致力于前端技术开发,加入开源社区,并以此为奋斗目标.  
+--- 
+### 　This is my first webapp implemented based on Vue. I will always maintain it at some stage in the future. I would like to pay my highest respect to the author of the open source project used in the project.The development of the front end cannot be separated from the contribution of the open source community. I will devote myself to the development of the front end technology, join the open source community, and take this as my goal.*/
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function (event) {
+            var a = document.getElementById('alpha'),
+                b = document.getElementById('beta'),
+                g = document.getElementById('gamma'),
+                alpha = event.alpha,
+                beta = event.beta,
+                gamma = event.gamma;
+ 
+            a.innerHTML = Math.round(alpha);
+            b.innerHTML = Math.round(beta);
+            g.innerHTML = Math.round(gamma);
+ 
+        }, false);
+    } else {
+        document.querySelector('body').innerHTML = '你的浏览器不支持陀螺仪';
+    }
+</script>
+</html>
