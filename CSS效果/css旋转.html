@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>  
+        .outer{
+            width:300px;
+            height:300px;
+            margin:150px auto;
+            transform-style: preserve-3d;
+            position:relative;
+            animation: box-anim 10s linear infinite;
+        }
+        .outer div{
+            width:100%;
+            height:100%;
+            text-align: center;
+            line-height: 300px;
+            position:absolute;
+            font-size: 50px;
+            color:rgba(105, 100,255, 0.3);
+        }
+      .front{
+            background-color: rgba(255, 150, 0, 0.5);
+            transform: translateZ(150px);
+        }
+        .back{
+            background-color: rgba(35, 197, 170, 0.5);
+            transform: translateZ(-150px);
+        }
+        .left{
+            background-color: rgba(185, 25, 73, 0.5);
+            transform: translateX(-150px) rotateY(-90deg);
+        }
+        .right{
+            background-color: rgba(83, 119, 185, 0.5);
+            transform: translateX(150px) rotateY(-90deg);
+        }
+        .above{
+            background-color: rgba(198, 211, 23, 0.5);
+            transform: translateY(-150px) rotateX(90deg);
+        }
+        .down{
+            background-color: rgba(134, 84, 12, 0.288);
+            transform: translateY(150px) rotateX(90deg);
+        }
+		
+/*@keyframes box-anim{
+            from{
+
+            }
+            to{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+
+        }*/
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="above"></div>
+        <div class="down"></div>
+    </div>
+	<script>
+	var space = document.querySelectorAll('.outer');
+	if(window.DeviceOrientationEvent) { window.addEventListener('deviceorientation', 
+	function(event) { var alpha = event.alpha, beta = event.beta, gamma = event.gamma; space[0].style.webkitTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)'; space[0].style.transform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)'; space[0].style.mozTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)'; },false); 
+	}else{
+	document.querySelector('body').innerHTML = '你的浏览器不支持'; }
+	</script>
+</body>
+</html>

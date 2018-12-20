@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #content {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="xx" width="600px" height="600px" style="background:orange">
+
+        </canvas>
+    </div>
+</body>
+
+</html>
+<script>
+    var canvasm = document.getElementById("xx");
+    var mm = canvasm.getContext('2d');
+
+    function drowA(t) {
+        mm.strokeStyle = 'red';
+        mm.translate(300, 200);
+        mm.rotate(-Math.PI);
+        mm.moveTo(-2, 0);
+        for (var i = -200; i <= 200; i++) {
+            var x = i / 100;
+            var y = Math.sqrt(1 - (Math.abs(x) - 1) * (Math.abs(x) - 1));
+            mm.lineTo(t * x, t * y);
+        }
+        mm.stroke();
+        mm.beginPath();
+        mm.moveTo(-2, 0);
+        for (var i = -100; i <= 100; i++) {
+            var x = 2 * i / 100;
+            var y = -3 * Math.sqrt(1 - Math.sqrt(Math.abs(x) / 2));
+            mm.lineTo(t * x, t * y);
+        }
+        mm.stroke();
+        for (var j = 0; j < 7; j++) {
+            lineSl(t);
+        }       
+    }
+    function lineSl(t) {
+            mm.beginPath();
+            mm.moveTo(-(2 * t - 1), 0);
+            mm.lineTo(1, 0);
+            mm.strokeStyle = 'orange';
+            mm.stroke();
+        }
+   drowA(100);
+</script>

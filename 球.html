@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body,canvas{
+            width:100vw;
+            height:100vh;
+            background:#000000;
+            overflow:hidden;
+        }
+        </style>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>
+
+
+<script>
+setTimeout(function() {
+
+    var randomColor = function randomColor() {
+        if(!randomColor.colors) {
+            randomColor.colors = ['#05ffb0', '#00e7eb', '#ff3860', '#ffdd57', '#ff470f', '#b86bff', "#ff8800"];
+        }
+        var colors = randomColor.colors
+        return colors[Math.floor(Math.random() * colors.length)];
+    };
+
+    var random = function(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    };
+
+    var canvas = document.querySelector('canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    var Ball = function() {
+        this.radius = random(30, 40);
+        this.x = canvas.width / 2 + random(-100, 100); // 水平位置每个小球都不一样
+        this.y = -this.radius;
+        this.vx = 0;
+        this.vy = Math.random();
+        this.color = randomColor();
+    };
+    Ball.prototype.render = function() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.1;
+
+        // 超出边界后重新恢复初始位置
+        if (this.y > canvas.height) {
+            this.y = -this.radius;
+            this.x = canvas.width / 2 + random(-100, 100);
+            this.vx = 0;
+            this.vy = 0;
+        }
+
+        context.fillStyle = this.color;
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        context.fill();
+    };
+
+    // 生成200小球
+    var balls = [];
+    var count = 0;
+    var render = function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if (count < 200) {
+            balls.push(new Ball());
+            count++;
+        }
+        balls.forEach(function(ball) {
+            ball.render();
+        });
+    };
+
+    (function run() {
+        requestAnimationFrame(run);
+        render();
+    })();
+}, 500);
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body> 
+</body>
+</html>
+    <script>
+        "use strict";
+        //js 中并没有块级作用域的概念,作用域是相对于函数而言的.因为for循环中遍历之后 i的值并不会销毁,
+        //在for循环外再次输出i的时候,i的值会为循环的最后一个.
+        //如何实现块级作用域,只需用立即执行函数,即可销毁变量       
+        function fn(){
+            num =2;
+            console.log(window.num);
+            //变量提前声明,实为window下的属性,window.num;
+           var num = 1;
+           alert(num);
+        }
+            fn();
+    </script>

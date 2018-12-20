@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    请输入数字:<input type="text">
+    <p></p>
+</body>
+</html>
+<script>
+    //回文数 通过字符串转为数组,用reverse方法倒置,之后用join方法转回字符串
+    let sInput = document.getElementsByTagName('input')[0];
+    let sP = document.getElementsByTagName('p')[0];
+   
+    function checkPalindromic(str){
+       return str1 = str.split('').reverse().join('');        
+    }  
+    sInput.onblur = function(){
+        let a = sInput.value;
+        checkPalindromic(a);
+       sP.innerHTML = a+str1;
+    }
+
+</script>

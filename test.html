@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name;
+        }
+        Person.prototype.say = function(){
+            console.log(this.name+"说:大家好");
+        }
+       function Teacher(name,books){
+           Person.call(this);
+           this.books = books;
+       }
+       Teacher.prototype = new Person();
+       Teacher.prototype.constructor = Teacher;
+       Teacher.prototype.getBooks = function(){
+           console.log(this.name+"拿着"+this.books);
+       }
+        var li = new Person("李");
+        li.say();
+        var te = new Teacher();
+        te.name = "王";
+        te.books = "数据结构";
+        te.getBooks();
+       
+
+    </script>
+</body>
+</html>
